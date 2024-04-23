@@ -1,0 +1,1 @@
+class_name LevelDemo extends BaseGameController
