@@ -1,0 +1,21 @@
+[gd_scene load_steps=2 format=3 uid="uid://bneqvl2tq4s2t"]
+
+[ext_resource type="Script" path="res://core/camera_component/camera_component.gd" id="1_oed5e"]
+
+[node name="CameraComponent" type="Camera2D"]
+zoom = Vector2(1.5, 1.5)
+process_callback = 0
+limit_smoothed = true
+position_smoothing_enabled = true
+position_smoothing_speed = 4.0
+rotation_smoothing_enabled = true
+rotation_smoothing_speed = 4.0
+drag_horizontal_enabled = true
+drag_vertical_enabled = true
+drag_left_margin = 0.1
+drag_top_margin = 0.1
+drag_right_margin = 0.1
+drag_bottom_margin = 0.1
+editor_draw_limits = true
+editor_draw_drag_margin = true
+script = ExtResource("1_oed5e")
