@@ -1,16 +1,16 @@
 [gd_scene load_steps=15 format=3 uid="uid://u5r253ejyhei"]
 
-[ext_resource type="Script" path="res://entities/interactables/Checkpoint/checkpoint.gd" id="1_06p20"]
-[ext_resource type="Texture2D" uid="uid://bto8swkohp841" path="res://entities/interactables/Checkpoint/Sprites/Flag 01.png" id="1_v3ni6"]
-[ext_resource type="Texture2D" uid="uid://eckdpgv0t3ik" path="res://entities/interactables/Checkpoint/Sprites/Platform.png" id="2_m3cld"]
-[ext_resource type="Texture2D" uid="uid://du6mwwb56ac5m" path="res://entities/interactables/Checkpoint/Sprites/Flag 02.png" id="3_d7ac5"]
-[ext_resource type="Texture2D" uid="uid://0gut6mvu3c04" path="res://entities/interactables/Checkpoint/Sprites/Flag 03.png" id="4_vjpt8"]
-[ext_resource type="Texture2D" uid="uid://bx5mbl6mq41o5" path="res://entities/interactables/Checkpoint/Sprites/Flag 04.png" id="5_hktiw"]
-[ext_resource type="Texture2D" uid="uid://c1df25bn0xmpi" path="res://entities/interactables/Checkpoint/Sprites/Flag 05.png" id="6_n6mlx"]
-[ext_resource type="Texture2D" uid="uid://bpogoavmkdnpu" path="res://entities/interactables/Checkpoint/Sprites/Flag 06.png" id="7_o2d1a"]
-[ext_resource type="Texture2D" uid="uid://dqqa4xkrioajm" path="res://entities/interactables/Checkpoint/Sprites/Flag 07.png" id="8_rabiw"]
-[ext_resource type="Texture2D" uid="uid://cnwk82opy8lmf" path="res://entities/interactables/Checkpoint/Sprites/Flag 08.png" id="9_6u727"]
-[ext_resource type="Texture2D" uid="uid://ccpxih7uwgogt" path="res://entities/interactables/Checkpoint/Sprites/Flag 09.png" id="10_550qo"]
+[ext_resource type="Script" path="res://entities/interactables/checkpoint/checkpoint.gd" id="1_06p20"]
+[ext_resource type="Texture2D" uid="uid://bto8swkohp841" path="res://entities/interactables/checkpoint/sprites/Flag 01.png" id="1_v3ni6"]
+[ext_resource type="Texture2D" uid="uid://eckdpgv0t3ik" path="res://entities/interactables/checkpoint/sprites/Platform.png" id="2_m3cld"]
+[ext_resource type="Texture2D" uid="uid://du6mwwb56ac5m" path="res://entities/interactables/checkpoint/sprites/Flag 02.png" id="3_d7ac5"]
+[ext_resource type="Texture2D" uid="uid://0gut6mvu3c04" path="res://entities/interactables/checkpoint/sprites/Flag 03.png" id="4_vjpt8"]
+[ext_resource type="Texture2D" uid="uid://bx5mbl6mq41o5" path="res://entities/interactables/checkpoint/sprites/Flag 04.png" id="5_hktiw"]
+[ext_resource type="Texture2D" uid="uid://c1df25bn0xmpi" path="res://entities/interactables/checkpoint/sprites/Flag 05.png" id="6_n6mlx"]
+[ext_resource type="Texture2D" uid="uid://bpogoavmkdnpu" path="res://entities/interactables/checkpoint/sprites/Flag 06.png" id="7_o2d1a"]
+[ext_resource type="Texture2D" uid="uid://dqqa4xkrioajm" path="res://entities/interactables/checkpoint/sprites/Flag 07.png" id="8_rabiw"]
+[ext_resource type="Texture2D" uid="uid://cnwk82opy8lmf" path="res://entities/interactables/checkpoint/sprites/Flag 08.png" id="9_6u727"]
+[ext_resource type="Texture2D" uid="uid://ccpxih7uwgogt" path="res://entities/interactables/checkpoint/sprites/Flag 09.png" id="10_550qo"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vw4h0"]
 size = Vector2(32, 104)
@@ -62,4 +62,4 @@ libraries = {
 "": SubResource("AnimationLibrary_c2kiy")
 }
 
-[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
+[connection signal="body_entered" from="Area2D" to="." method="_on_body_entered"]

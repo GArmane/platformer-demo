@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ohqfag26fnkm"
-path="res://.godot/imported/Spikes.png-3c7bf5e97e3873f115a3634895957eec.ctex"
+uid="uid://dys466dptvgee"
+path="res://.godot/imported/04.png-90466d4792a6c3c336de9cb5a5ebd906.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://entities/interactables/Spikes/Sprites/Spikes.png"
-dest_files=["res://.godot/imported/Spikes.png-3c7bf5e97e3873f115a3634895957eec.ctex"]
+source_file="res://entities/interactables/coin/sprites/04.png"
+dest_files=["res://.godot/imported/04.png-90466d4792a6c3c336de9cb5a5ebd906.ctex"]
 
 [params]
 

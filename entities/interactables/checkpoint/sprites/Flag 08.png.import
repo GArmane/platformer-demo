@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dys466dptvgee"
-path="res://.godot/imported/04.png-0a39198e9f08c67cafa0c06f974dae98.ctex"
+uid="uid://cnwk82opy8lmf"
+path="res://.godot/imported/Flag 08.png-892d1a5b00f26a31844e6f2d2769c552.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://entities/interactables/Coin/Sprites/04.png"
-dest_files=["res://.godot/imported/04.png-0a39198e9f08c67cafa0c06f974dae98.ctex"]
+source_file="res://entities/interactables/checkpoint/sprites/Flag 08.png"
+dest_files=["res://.godot/imported/Flag 08.png-892d1a5b00f26a31844e6f2d2769c552.ctex"]
 
 [params]
 

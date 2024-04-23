@@ -1,32 +1,39 @@
 class_name BaseGameController extends Node
 
 
+@export var game_ui: GameUI
 @export var player: Player
-@export var current_checkpoint: Checkpoint
+@export var spawn_point: Checkpoint
 
 
 # Private API
 func _respawn_player() -> void:
-	player.position = current_checkpoint.global_position
+	player.position = spawn_point.global_position
 
 
-func _set_checkpoint(new_checkpoint: Checkpoint) -> Checkpoint:
-	var old_checkpoint := current_checkpoint
-	if old_checkpoint != new_checkpoint:
-		old_checkpoint.deactivate()
-		current_checkpoint = new_checkpoint
-	
-	return old_checkpoint
+# Engine callbacks
+func _ready() -> void:
+	spawn_point.activate()
+	_respawn_player()
 
 
-# Signal handlers
-func _on_checkpoint_activated(checkpoint: Checkpoint) -> void:
-	_set_checkpoint(checkpoint)
+# Signals
+func _on_checkpoint_activated(
+	checkpoint: Checkpoint,
+	activator: Node2D
+) -> void:
+	if activator is Player && checkpoint != spawn_point:
+		checkpoint.activate()
+		spawn_point.deactivate()
+		spawn_point = checkpoint
+
+
+func _on_coin_collected(coin: Coin, collector: Node2D) -> void:
+	if collector is Player:
+		var total_coins := player.give_coin(coin)
+		game_ui.update_coin_display(total_coins)
+		coin.destroy()
 
 
 func _on_player_death(_player: Player) -> void:
 	_respawn_player()
-
-
-func _on_player_received_coin(_player: Player, coin: Coin, total: int) -> void:
-	print("Coin value: %s, Total coins: %s" % [coin.value, total])

@@ -1,10 +1,10 @@
 [gd_scene load_steps=9 format=3 uid="uid://dmh4u4u8fd157"]
 
-[ext_resource type="Script" path="res://entities/interactables/Coin/coin.gd" id="1_5jal6"]
-[ext_resource type="Texture2D" uid="uid://bnev3jo122ob5" path="res://entities/interactables/Coin/Sprites/01.png" id="1_h7x6y"]
-[ext_resource type="Texture2D" uid="uid://bonq3p6u1rfbm" path="res://entities/interactables/Coin/Sprites/02.png" id="2_oh16k"]
-[ext_resource type="Texture2D" uid="uid://dew2kgickq138" path="res://entities/interactables/Coin/Sprites/03.png" id="3_fnx5k"]
-[ext_resource type="Texture2D" uid="uid://dys466dptvgee" path="res://entities/interactables/Coin/Sprites/04.png" id="4_7m16h"]
+[ext_resource type="Script" path="res://entities/interactables/coin/coin.gd" id="1_5jal6"]
+[ext_resource type="Texture2D" uid="uid://bnev3jo122ob5" path="res://entities/interactables/coin/sprites/01.png" id="1_h7x6y"]
+[ext_resource type="Texture2D" uid="uid://bonq3p6u1rfbm" path="res://entities/interactables/coin/sprites/02.png" id="2_oh16k"]
+[ext_resource type="Texture2D" uid="uid://dew2kgickq138" path="res://entities/interactables/coin/sprites/03.png" id="3_fnx5k"]
+[ext_resource type="Texture2D" uid="uid://dys466dptvgee" path="res://entities/interactables/coin/sprites/04.png" id="4_7m16h"]
 
 [sub_resource type="Animation" id="Animation_bbqhi"]
 resource_name = "Default"
@@ -47,4 +47,4 @@ libraries = {
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 shape = SubResource("CircleShape2D_6672q")
 
-[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
+[connection signal="body_entered" from="Area2D" to="." method="_on_body_entered"]

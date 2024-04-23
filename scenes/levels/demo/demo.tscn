@@ -1,17 +1,21 @@
-[gd_scene load_steps=8 format=3 uid="uid://gkfecovkykom"]
+[gd_scene load_steps=11 format=3 uid="uid://gkfecovkykom"]
 
 [ext_resource type="Script" path="res://scenes/levels/demo/demo.gd" id="1_ghrdb"]
 [ext_resource type="Texture2D" uid="uid://du7q6nl65dlaj" path="res://tilesets/palm_tree_island/background/BG Image.png" id="2_qcty2"]
 [ext_resource type="TileSet" uid="uid://dtd3g66vv4gvs" path="res://tilesets/palm_tree_island/level_one_tiles.res" id="3_p43ls"]
-[ext_resource type="PackedScene" uid="uid://u5r253ejyhei" path="res://entities/interactables/Checkpoint/checkpoint.tscn" id="4_51oce"]
-[ext_resource type="PackedScene" uid="uid://dmh4u4u8fd157" path="res://entities/interactables/Coin/coin.tscn" id="5_f46ko"]
-[ext_resource type="PackedScene" uid="uid://yivs4ak1meyj" path="res://entities/interactables/Spikes/spikes.tscn" id="6_ybu8e"]
+[ext_resource type="PackedScene" uid="uid://u5r253ejyhei" path="res://entities/interactables/checkpoint/checkpoint.tscn" id="4_51oce"]
+[ext_resource type="Script" path="res://ui/game_ui/game_ui.gd" id="4_60utg"]
+[ext_resource type="Texture2D" uid="uid://c718nj51it513" path="res://ui/game_ui/coin.png" id="4_mgao1"]
+[ext_resource type="Script" path="res://ui/game_ui/coins_display.gd" id="5_7q68i"]
+[ext_resource type="PackedScene" uid="uid://dmh4u4u8fd157" path="res://entities/interactables/coin/coin.tscn" id="5_f46ko"]
+[ext_resource type="PackedScene" uid="uid://yivs4ak1meyj" path="res://entities/interactables/spikes/spikes.tscn" id="6_ybu8e"]
 [ext_resource type="PackedScene" uid="uid://ch7qpj6lh5fpt" path="res://entities/actors/player/player.tscn" id="7_her7u"]
 
-[node name="demo" type="Node2D" node_paths=PackedStringArray("player", "current_checkpoint")]
+[node name="demo" type="Node2D" node_paths=PackedStringArray("game_ui", "player", "spawn_point")]
 script = ExtResource("1_ghrdb")
+game_ui = NodePath("GameUI")
 player = NodePath("Actors/Player")
-current_checkpoint = NodePath("Checkpoints/SpawnPoint")
+spawn_point = NodePath("Checkpoints/SpawnPoint")
 metadata/_edit_lock_ = true
 
 [node name="Background" type="TextureRect" parent="."]
@@ -19,6 +23,9 @@ offset_right = 864.0
 offset_bottom = 536.0
 texture = ExtResource("2_qcty2")
 metadata/_edit_lock_ = true
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(432, 272)
 
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = ExtResource("3_p43ls")
@@ -31,6 +38,32 @@ layer_2/name = "Decoration"
 layer_2/tile_data = PackedInt32Array()
 metadata/_edit_lock_ = true
 
+[node name="GameUI" type="CanvasLayer" parent="."]
+script = ExtResource("4_60utg")
+
+[node name="CoinsDisplay" type="Control" parent="GameUI"]
+unique_name_in_owner = true
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("5_7q68i")
+
+[node name="Icon" type="TextureRect" parent="GameUI/CoinsDisplay"]
+layout_mode = 0
+offset_right = 24.0
+offset_bottom = 24.0
+texture = ExtResource("4_mgao1")
+
+[node name="Qtd" type="Label" parent="GameUI/CoinsDisplay"]
+layout_mode = 0
+offset_left = 24.0
+offset_right = 64.0
+offset_bottom = 24.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 16
+text = "x 0"
+
 [node name="Checkpoints" type="Node" parent="."]
 
 [node name="Checkpoint" parent="Checkpoints" instance=ExtResource("4_51oce")]
@@ -42,13 +75,46 @@ position = Vector2(168, 208)
 [node name="Coins" type="Node" parent="."]
 
 [node name="Coin" parent="Coins" instance=ExtResource("5_f46ko")]
-position = Vector2(320, 232)
+position = Vector2(216, 256)
 
 [node name="Coin2" parent="Coins" instance=ExtResource("5_f46ko")]
-position = Vector2(224, 264)
+position = Vector2(256, 212)
 
 [node name="Coin3" parent="Coins" instance=ExtResource("5_f46ko")]
-position = Vector2(672, 312)
+position = Vector2(281, 202)
+
+[node name="Coin4" parent="Coins" instance=ExtResource("5_f46ko")]
+position = Vector2(306, 209)
+
+[node name="Coin5" parent="Coins" instance=ExtResource("5_f46ko")]
+position = Vector2(319, 229)
+
+[node name="Coin6" parent="Coins" instance=ExtResource("5_f46ko")]
+position = Vector2(393, 196)
+
+[node name="Coin7" parent="Coins" instance=ExtResource("5_f46ko")]
+position = Vector2(419, 197)
+
+[node name="Coin8" parent="Coins" instance=ExtResource("5_f46ko")]
+position = Vector2(444, 207)
+
+[node name="Coin9" parent="Coins" instance=ExtResource("5_f46ko")]
+position = Vector2(464, 224)
+
+[node name="Coin10" parent="Coins" instance=ExtResource("5_f46ko")]
+position = Vector2(472, 248)
+
+[node name="Coin11" parent="Coins" instance=ExtResource("5_f46ko")]
+position = Vector2(632, 304)
+
+[node name="Coin12" parent="Coins" instance=ExtResource("5_f46ko")]
+position = Vector2(656, 304)
+
+[node name="Coin13" parent="Coins" instance=ExtResource("5_f46ko")]
+position = Vector2(680, 304)
+
+[node name="Coin14" parent="Coins" instance=ExtResource("5_f46ko")]
+position = Vector2(704, 304)
 
 [node name="Obstacles" type="Node" parent="."]
 
@@ -58,9 +124,21 @@ position = Vector2(432, 272)
 [node name="Actors" type="Node" parent="."]
 
 [node name="Player" parent="Actors" instance=ExtResource("7_her7u")]
-position = Vector2(176, 216)
 
 [connection signal="activated" from="Checkpoints/Checkpoint" to="." method="_on_checkpoint_activated"]
 [connection signal="activated" from="Checkpoints/SpawnPoint" to="." method="_on_checkpoint_activated"]
+[connection signal="collected" from="Coins/Coin" to="." method="_on_coin_collected"]
+[connection signal="collected" from="Coins/Coin2" to="." method="_on_coin_collected"]
+[connection signal="collected" from="Coins/Coin3" to="." method="_on_coin_collected"]
+[connection signal="collected" from="Coins/Coin4" to="." method="_on_coin_collected"]
+[connection signal="collected" from="Coins/Coin5" to="." method="_on_coin_collected"]
+[connection signal="collected" from="Coins/Coin6" to="." method="_on_coin_collected"]
+[connection signal="collected" from="Coins/Coin7" to="." method="_on_coin_collected"]
+[connection signal="collected" from="Coins/Coin8" to="." method="_on_coin_collected"]
+[connection signal="collected" from="Coins/Coin9" to="." method="_on_coin_collected"]
+[connection signal="collected" from="Coins/Coin10" to="." method="_on_coin_collected"]
+[connection signal="collected" from="Coins/Coin11" to="." method="_on_coin_collected"]
+[connection signal="collected" from="Coins/Coin12" to="." method="_on_coin_collected"]
+[connection signal="collected" from="Coins/Coin13" to="." method="_on_coin_collected"]
+[connection signal="collected" from="Coins/Coin14" to="." method="_on_coin_collected"]
 [connection signal="death" from="Actors/Player" to="." method="_on_player_death"]
-[connection signal="received_coin" from="Actors/Player" to="." method="_on_player_received_coin"]
