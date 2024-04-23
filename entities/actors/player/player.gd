@@ -1,9 +1,11 @@
 class_name Player extends CharacterBody2D
 
 @onready var _animation_player: AnimationPlayer = $AnimationPlayer
+@onready var _attacks_collision: Area2D = $AttacksCollision
 @onready var _sprite2d: Sprite2D = $Sprite2D
 @onready var coins := 0
 
+@export var attacking := false
 @export var speed := 300.0
 @export var jump_velocity := -400.0
 
@@ -25,17 +27,25 @@ func give_coin(coin: Coin) -> int:
 
 
 # Private API
-func _update_animation(direction: int) -> void:
-	if velocity.x:
-		_animation_player.play("Run")
-		_sprite2d.flip_h = bool(direction == -1)
-	else:
-		_animation_player.play("Idle")
+func _attack() -> void:
+	for area in _attacks_collision.get_overlapping_areas():
+		print(area.get_parent().name)
+		
+	_animation_player.play("with_sword/attack_1")
 
-	if velocity.y < 0:
-		_animation_player.play("Jump")
-	elif velocity.y > 0:
-		_animation_player.play("Fall")
+
+func _update_animation(direction: int) -> void:
+	if !attacking:
+		if velocity.x:
+			_animation_player.play("with_sword/run")
+			_sprite2d.flip_h = bool(direction == -1)
+		else:
+			_animation_player.play("with_sword/idle")
+
+		if velocity.y < 0:
+			_animation_player.play("with_sword/jump")
+		elif velocity.y > 0:
+			_animation_player.play("with_sword/fall")
 
 
 func _update_movement(delta: float, direction: int) -> void:
@@ -57,6 +67,11 @@ func _update_movement(delta: float, direction: int) -> void:
 
 
 # Engine callbacks
+func _process(_delta: float) -> void:
+	if Input.is_action_just_pressed("attack"):
+		_attack()
+
+
 func _physics_process(delta: float) -> void:
 	# Get the input direction and handle the movement/deceleration.
 	# As good practice, you should replace UI actions with custom gameplay actions.
