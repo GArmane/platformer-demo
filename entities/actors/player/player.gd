@@ -79,6 +79,3 @@ func _physics_process(delta: float) -> void:
 
 	_update_movement(delta, direction)
 	_update_animation(direction)
-	
-	# Check boundary death. Redo later.
-	if position.y >= 600: damage()

@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://dx82erlr133tp"]
+
+[ext_resource type="Script" path="res://core/areas/kill_line/kill_line.gd" id="1_v54q7"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_2jott"]
+
+[node name="KillLine" type="Area2D"]
+position = Vector2(0, 512)
+monitorable = false
+script = ExtResource("1_v54q7")
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("WorldBoundaryShape2D_2jott")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

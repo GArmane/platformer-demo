@@ -1,10 +1,11 @@
-[gd_scene load_steps=10 format=3 uid="uid://gkfecovkykom"]
+[gd_scene load_steps=11 format=3 uid="uid://gkfecovkykom"]
 
 [ext_resource type="Script" path="res://scenes/levels/demo/demo.gd" id="1_ghrdb"]
 [ext_resource type="Texture2D" uid="uid://du7q6nl65dlaj" path="res://tilesets/palm_tree_island/background/BG Image.png" id="2_qcty2"]
 [ext_resource type="TileSet" uid="uid://dtd3g66vv4gvs" path="res://tilesets/palm_tree_island/level_one_tiles.res" id="3_p43ls"]
-[ext_resource type="PackedScene" uid="uid://bneqvl2tq4s2t" path="res://core/camera_component/camera_component.tscn" id="3_xurue"]
+[ext_resource type="PackedScene" uid="uid://bneqvl2tq4s2t" path="res://core/cameras/camera_component.tscn" id="3_xurue"]
 [ext_resource type="PackedScene" uid="uid://u5r253ejyhei" path="res://entities/interactables/checkpoint/checkpoint.tscn" id="4_51oce"]
+[ext_resource type="PackedScene" uid="uid://dx82erlr133tp" path="res://core/areas/kill_line/kill_line.tscn" id="4_ew204"]
 [ext_resource type="PackedScene" uid="uid://co4htohntdrdg" path="res://ui/game_ui/game_ui.tscn" id="4_mjk5d"]
 [ext_resource type="PackedScene" uid="uid://dmh4u4u8fd157" path="res://entities/interactables/coin/coin.tscn" id="5_f46ko"]
 [ext_resource type="PackedScene" uid="uid://yivs4ak1meyj" path="res://entities/interactables/spikes/spikes.tscn" id="6_ybu8e"]
@@ -33,6 +34,8 @@ layer_1/tile_data = PackedInt32Array(1376282, 65536, 3, 1441818, 65536, 4, 15073
 layer_2/name = "Decoration"
 layer_2/tile_data = PackedInt32Array()
 metadata/_edit_lock_ = true
+
+[node name="KillLine" parent="." instance=ExtResource("4_ew204")]
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
 
