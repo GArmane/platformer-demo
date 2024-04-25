@@ -60,6 +60,7 @@ func _update_movement(delta: float, direction: int) -> void:
 	# Handle movement direction
 	if direction:
 		velocity.x = direction * speed
+		_attacks_collision.scale.x = abs(_attacks_collision.scale.x) * direction
 	else:
 		velocity.x = move_toward(velocity.x, 0, speed)
 
