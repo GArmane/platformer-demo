@@ -1,7 +1,7 @@
 class_name Player extends CharacterBody2D
 
 @onready var _animation_player: AnimationPlayer = $AnimationPlayer
-@onready var _attacks_collision: Area2D = $AttacksCollision
+@onready var _hitbox: Area2D = $Hitbox
 @onready var _sprite2d: Sprite2D = $Sprite2D
 @onready var coins := 0
 
@@ -13,6 +13,7 @@ signal death(player: Player)
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity: Variant = ProjectSettings.get_setting("physics/2d/default_gravity")
+var direction := Vector2.ZERO
 
 
 # Public API
@@ -28,17 +29,14 @@ func give_coin(coin: Coin) -> int:
 
 # Private API
 func _attack() -> void:
-	for area in _attacks_collision.get_overlapping_areas():
-		print(area.get_parent().name)
-		
 	_animation_player.play("with_sword/attack_1")
 
 
-func _update_animation(direction: int) -> void:
+func _update_animation() -> void:
 	if !attacking:
 		if velocity.x:
 			_animation_player.play("with_sword/run")
-			_sprite2d.flip_h = bool(direction == -1)
+			_sprite2d.flip_h = bool(direction.x == -1)
 		else:
 			_animation_player.play("with_sword/idle")
 
@@ -48,7 +46,13 @@ func _update_animation(direction: int) -> void:
 			_animation_player.play("with_sword/fall")
 
 
-func _update_movement(delta: float, direction: int) -> void:
+func _update_hitbox() -> void:
+	_hitbox.position.x = abs(_hitbox.position.x) \
+		* (-1 if _sprite2d.flip_h else 1)
+	_hitbox.monitoring = attacking
+
+
+func _update_movement(delta: float) -> void:
 	# Add the gravity.
 	if not is_on_floor():
 		velocity.y += gravity * delta
@@ -59,8 +63,7 @@ func _update_movement(delta: float, direction: int) -> void:
 
 	# Handle movement direction
 	if direction:
-		velocity.x = direction * speed
-		_attacks_collision.scale.x = abs(_attacks_collision.scale.x) * direction
+		velocity.x = direction.x * speed
 	else:
 		velocity.x = move_toward(velocity.x, 0, speed)
 
@@ -76,7 +79,12 @@ func _process(_delta: float) -> void:
 func _physics_process(delta: float) -> void:
 	# Get the input direction and handle the movement/deceleration.
 	# As good practice, you should replace UI actions with custom gameplay actions.
-	var direction := Input.get_axis("left", "right") as int
 
-	_update_movement(delta, direction)
-	_update_animation(direction)
+	direction.x = Input.get_axis("left", "right") as int
+	_update_movement(delta)
+	_update_hitbox()
+	_update_animation()
+
+
+func _on_hitbox_body_entered(body: Fiercetooth) -> void:
+	body.damage()

@@ -11,6 +11,8 @@ metadata/_edit_lock_ = true
 texture = ExtResource("1_ovc4b")
 
 [node name="Area2D" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 2
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Area2D"]
 polygon = PackedVector2Array(-16, 16, -16, 8, -12, 5, -5, 0, 3, 3, 12, 1, 15, 6, 15, 16)

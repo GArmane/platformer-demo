@@ -1,0 +1,44 @@
+[gd_scene load_steps=6 format=3 uid="uid://bold0fxroqxvs"]
+
+[ext_resource type="Script" path="res://entities/actors/enemies/fiercetooth/fiercetooth.gd" id="1_e0tco"]
+[ext_resource type="Texture2D" uid="uid://cyus2vk4pfxyg" path="res://entities/actors/enemies/fiercetooth/sprites/body/idle/idle_01.png" id="1_mp4qv"]
+[ext_resource type="AnimationLibrary" uid="uid://b67o0i3fvkmwy" path="res://entities/actors/enemies/fiercetooth/anim_default.res" id="3_fy7jd"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ubsdv"]
+radius = 9.0
+height = 22.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_odgp1"]
+height = 26.0
+
+[node name="FierceTooth" type="CharacterBody2D"]
+collision_layer = 4
+collision_mask = 5
+script = ExtResource("1_e0tco")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_mp4qv")
+metadata/_edit_lock_ = true
+
+[node name="BodyCollider" type="CollisionShape2D" parent="."]
+position = Vector2(0, -1)
+shape = SubResource("CapsuleShape2D_ubsdv")
+
+[node name="Hitbox" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 2
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+shape = SubResource("CapsuleShape2D_odgp1")
+
+[node name="GroundDetector" type="RayCast2D" parent="."]
+position = Vector2(-8, 0)
+target_position = Vector2(0, 16)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"default": ExtResource("3_fy7jd")
+}
+
+[connection signal="body_entered" from="Hitbox" to="." method="_on_hitbox_body_entered"]

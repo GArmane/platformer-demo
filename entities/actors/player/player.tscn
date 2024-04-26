@@ -1,21 +1,20 @@
-[gd_scene load_steps=7 format=3 uid="uid://ch7qpj6lh5fpt"]
+[gd_scene load_steps=6 format=3 uid="uid://ch7qpj6lh5fpt"]
 
 [ext_resource type="Script" path="res://entities/actors/player/player.gd" id="1_23ddc"]
 [ext_resource type="AnimationLibrary" uid="uid://dhqxdf00ep4dc" path="res://entities/actors/player/anim_with_sword.res" id="3_85c5t"]
-[ext_resource type="Texture2D" uid="uid://cmxxjq6gc5eh7" path="res://entities/actors/player/sprites/captain_clown_nose/with_sword/idle_sword/idle_sword_01.png" id="3_dta4p"]
+[ext_resource type="Texture2D" uid="uid://cmxxjq6gc5eh7" path="res://entities/actors/player/sprites/body/with_sword/idle_sword/idle_sword_01.png" id="3_dta4p"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_u31s0"]
+radius = 9.0
+height = 24.0
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_spf1e"]
 radius = 8.00081
 height = 17.8696
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_7vtia"]
-height = 26.0
-
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_u31s0"]
-radius = 11.0
-height = 28.0
-
 [node name="Player" type="CharacterBody2D"]
+collision_layer = 2
+collision_mask = 3
 script = ExtResource("1_23ddc")
 speed = 200.0
 jump_velocity = -300.0
@@ -23,27 +22,27 @@ jump_velocity = -300.0
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("3_dta4p")
 
-[node name="AttacksCollision" type="Area2D" parent="."]
-monitorable = false
+[node name="BodyCollider" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_u31s0")
+metadata/_edit_lock_ = true
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="AttacksCollision"]
-position = Vector2(19, 5)
+[node name="Hitbox" type="Area2D" parent="."]
+position = Vector2(18, 6)
+collision_layer = 0
+collision_mask = 4
+monitoring = false
+monitorable = false
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
 rotation = 1.56999
 scale = Vector2(0.371611, 0.895376)
 shape = SubResource("CapsuleShape2D_spf1e")
 
-[node name="EventsCollision" type="Area2D" parent="."]
-monitoring = false
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="EventsCollision"]
-position = Vector2(0, -2)
-shape = SubResource("CapsuleShape2D_7vtia")
-
-[node name="PhysicsCollision" type="CollisionShape2D" parent="."]
-position = Vector2(0, -2)
-shape = SubResource("CapsuleShape2D_u31s0")
-
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+reset_on_save = false
 libraries = {
 "with_sword": ExtResource("3_85c5t")
 }
+
+[connection signal="body_entered" from="Hitbox" to="." method="_on_hitbox_body_entered"]
